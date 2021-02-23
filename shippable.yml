@@ -7,7 +7,7 @@ runtime:
 
 env:
   global:
-    - DOCKER_REPO="openscad-appimage-aarch64-base"
+    - DOCKER_REPO="zero-gpio"
     - DOCKER_ACC=gounthar # {account name}
     
 build:
