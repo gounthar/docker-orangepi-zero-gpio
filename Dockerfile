@@ -1,6 +1,6 @@
 # FROM debian:latest
 # FROM balenalib/<hw>-<distro>-<lang_stack>:<lang_ver>-<distro_ver>-(build|run)-<yyyymmdd>
-FROM balenalib/orange-pi-zero-debian-OpenJDK:latest-buster-build
+FROM balenalib/orange-pi-zero-debian-openjdk:latest-buster-build
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-config dump | grep -we Recommends -e Suggests | sed s/1/0/ | tee /etc/apt/apt.conf.d/999norecommend
 RUN apt update && apt upgrade -y && apt install --no-install-recommends -y git i2c-tools python3-dev python3-pip sudo build-essential && \
