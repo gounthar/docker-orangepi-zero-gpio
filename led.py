@@ -1,6 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+#import OrangePi.GPIO as GPIO
 import OPi.GPIO as GPIO
 from time import sleep          # this lets us have a time delay
 
