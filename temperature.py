@@ -15,8 +15,8 @@ GPIO.setmode(GPIO.BOARD)        # set up BOARD BCM numbering
 GPIO.setup(7, GPIO.OUT)
 
 ## module GPIO 1-wire et capteur de temperature #####
-system('modprobe w1-gpio')
-system('modprobe w1-therm')
+#system('modprobe w1-gpio')
+#system('modprobe w1-therm')
 ## chemin vers les sondes ###########################
 base_dir = '/sys/bus/w1/devices/'
 ## Remplacez les repertoires 28-xxxxxxxxxxx #########
@@ -45,14 +45,15 @@ try:
             temp_raw = lignes[1].split("=")[1] # quand on a eu YES, on lit la temp apres le signe = sur la ligne 1
             sonde_value[i] = round(int(temp_raw) / 1000.0, 2) # le 2 arrondi a 2 chiffres apres la virgule
             print("sonde",i,"=",sonde_value[i]) # affichage a l'ecran
-            GPIO.output(7, 1)       # set port/pin value to 1/HIGH/True
-            sleep(0.1)
-            GPIO.output(7, 0)       # set port/pin value to 0/LOW/False
-            sleep(0.1)
-            GPIO.output(7, 1)       # set port/pin value to 1/HIGH/True
-            sleep(0.1)
-            GPIO.output(7, 0)       # set port/pin value to 0/LOW/False
-            sleep(0.1)
-            sleep(0.5)
+            if ( sonde_value[i] >= 30 ) : 
+               GPIO.output(7, 1)       # set port/pin value to 1/HIGH/True
+               sleep(0.1)
+               GPIO.output(7, 0)       # set port/pin value to 0/LOW/False
+               sleep(0.1)
+               GPIO.output(7, 1)       # set port/pin value to 1/HIGH/True
+               sleep(0.1)
+               GPIO.output(7, 0)       # set port/pin value to 0/LOW/False
+               sleep(0.1)
+               sleep(0.5)
 except KeyboardInterrupt:
     print ("Bye.")
